@@ -1,19 +1,23 @@
 package lpnu.service.impl;
 
 import lpnu.dto.DictionaryBookDTO;
+import lpnu.entity.DictionaryBook;
 import lpnu.exception.ServiceException;
 import lpnu.mapper.DictionaryBookToDictionaryBookDTOMapper;
 import lpnu.repository.DictionaryBookRepository;
 import lpnu.service.DictionaryBookService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DictionaryBookServiceImpl implements DictionaryBookService {
     private final DictionaryBookRepository dictionaryBookRepository;
     private final DictionaryBookToDictionaryBookDTOMapper dictionaryBookMapper;
 
-    public DictionaryBookServiceImpl(DictionaryBookRepository dictionaryBookRepository, DictionaryBookToDictionaryBookDTOMapper dictionaryBookMapper) {
+    public DictionaryBookServiceImpl(final DictionaryBookRepository dictionaryBookRepository,
+                                     final DictionaryBookToDictionaryBookDTOMapper dictionaryBookMapper) {
         this.dictionaryBookRepository = dictionaryBookRepository;
         this.dictionaryBookMapper = dictionaryBookMapper;
     }
@@ -36,26 +40,28 @@ public class DictionaryBookServiceImpl implements DictionaryBookService {
     }
 
     @Override
-    public DictionaryBookDTO updateDictionaryBook(final DictionaryBookDTO dictionaryDTO) {
-        if (dictionaryDTO.getId() == null) {
+    public DictionaryBookDTO updateDictionaryBook(final DictionaryBookDTO dictionaryBookDTO) {
+        if (dictionaryBookDTO.getId() == null) {
             throw new ServiceException(400, "id is null");
         }
 
-        return dictionaryBookMapper.toDTO(dictionaryBookRepository.
-                updateDictionaryBook(dictionaryBookMapper.toEntity(dictionaryDTO)));
+        final DictionaryBook dictionaryBook = dictionaryBookMapper.toEntity(dictionaryBookDTO);
+        return dictionaryBookMapper.toDTO(dictionaryBookRepository.updateDictionaryBook(dictionaryBook));
     }
 
     @Override
-    public DictionaryBookDTO saveDictionaryBook(final DictionaryBookDTO dictionaryDTO) {
-        if (dictionaryDTO.getId() != null) {
+    public DictionaryBookDTO saveDictionaryBook(final DictionaryBookDTO dictionaryBookDTO) {
+        if (dictionaryBookDTO.getId() != null) {
             throw new ServiceException(400, "id not null");
         }
 
-        if (dictionaryBookRepository.getAllDictionaryBooks().stream().anyMatch(dictionaryBookMapper.toEntity(dictionaryDTO)::equals)) {
+        if (dictionaryBookRepository.getAllDictionaryBooks().stream().anyMatch(dictionaryBookMapper.toEntity(dictionaryBookDTO)::equals)) {
             throw new ServiceException(400, "dictionary is already saved");
         }
 
-        dictionaryBookRepository.saveDictionary(dictionaryBookMapper.toEntity(dictionaryDTO));
-        return dictionaryBookMapper.toDTO(dictionaryBookMapper.toEntity(dictionaryDTO));
+        final DictionaryBook dictionaryBook = dictionaryBookMapper.toEntity(dictionaryBookDTO);
+
+        dictionaryBookRepository.saveDictionary(dictionaryBook);
+        return dictionaryBookMapper.toDTO(dictionaryBook);
     }
 }

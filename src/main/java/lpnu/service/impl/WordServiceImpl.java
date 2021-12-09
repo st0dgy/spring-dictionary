@@ -1,14 +1,17 @@
 package lpnu.service.impl;
 
 import lpnu.dto.WordDTO;
+import lpnu.entity.Word;
 import lpnu.exception.ServiceException;
 import lpnu.mapper.WordToWordDTOMapper;
 import lpnu.repository.WordRepository;
 import lpnu.service.WordService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class WordServiceImpl implements WordService {
     private final WordToWordDTOMapper wordMapper;
     private final WordRepository wordRepository;
@@ -36,25 +39,28 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public WordDTO updateWord(final WordDTO explanationDTO) {
-        if (explanationDTO.getId() == null) {
+    public WordDTO updateWord(final WordDTO wordDTO) {
+        if (wordDTO.getId() == null) {
             throw new ServiceException(400, "id is null");
         }
 
-        return wordMapper.toDTO(wordRepository.updateWord(wordMapper.toEntity(explanationDTO)));
+        final Word word = wordMapper.toEntity(wordDTO);
+        return wordMapper.toDTO(wordRepository.updateWord(word));
     }
 
     @Override
-    public WordDTO saveWord(final WordDTO explanationDTO) {
-        if (explanationDTO.getId() != null) {
+    public WordDTO saveWord(final WordDTO wordDTO) {
+        if (wordDTO.getId() != null) {
             throw new ServiceException(400, "id not null");
         }
 
-        if (wordRepository.getAllWords().stream().anyMatch(wordMapper.toEntity(explanationDTO)::equals)) {
+        if (wordRepository.getAllWords().stream().anyMatch(wordMapper.toEntity(wordDTO)::equals)) {
             throw new ServiceException(400, "word is already saved");
         }
 
-        wordRepository.saveWord(wordMapper.toEntity(explanationDTO));
-        return wordMapper.toDTO(wordMapper.toEntity(explanationDTO));
+        final Word word = wordMapper.toEntity(wordDTO);
+
+        wordRepository.saveWord(word);
+        return wordMapper.toDTO(word);
     }
 }

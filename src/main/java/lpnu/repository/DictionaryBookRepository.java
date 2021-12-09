@@ -44,6 +44,6 @@ public class DictionaryBookRepository {
         return dictionaryBooks.stream()
                 .filter(e -> e.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new ServiceException(400, "reader with id " + id + " not found"));
+                .orElseThrow(() -> new ServiceException(400, "dictionary with id " + id + " not found"));
     }
 }

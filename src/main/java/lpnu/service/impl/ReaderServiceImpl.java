@@ -1,32 +1,24 @@
 package lpnu.service.impl;
 
-import lpnu.dto.ExplanationDTO;
 import lpnu.dto.ReaderDTO;
-import lpnu.dto.WordDTO;
-import lpnu.entity.Explanation;
 import lpnu.entity.Reader;
-import lpnu.entity.Word;
 import lpnu.exception.ServiceException;
-import lpnu.mapper.ExplanationToExplanationDTOMapper;
 import lpnu.mapper.ReaderToReaderDTOMapper;
-import lpnu.mapper.WordToWordDTOMapper;
 import lpnu.repository.ReaderRepository;
 import lpnu.service.ReaderService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ReaderServiceImpl implements ReaderService {
     private final ReaderToReaderDTOMapper readerMapper;
-    private final WordToWordDTOMapper wordMapper;
-    private final ExplanationToExplanationDTOMapper explanationMapper;
     private final ReaderRepository readerRepository;
 
-    public ReaderServiceImpl(final ReaderToReaderDTOMapper readerMapper, final WordToWordDTOMapper wordMapper,
-                             final ExplanationToExplanationDTOMapper explanationMapper, final ReaderRepository readerRepository) {
+    public ReaderServiceImpl(final ReaderToReaderDTOMapper readerMapper,
+                             final ReaderRepository readerRepository) {
         this.readerMapper = readerMapper;
-        this.wordMapper = wordMapper;
-        this.explanationMapper = explanationMapper;
         this.readerRepository = readerRepository;
     }
 
@@ -53,7 +45,8 @@ public class ReaderServiceImpl implements ReaderService {
             throw new ServiceException(400, "id is null");
         }
 
-        return readerMapper.toDTO(readerRepository.updateReader(readerMapper.toEntity(readerDTO)));
+        final Reader reader = readerMapper.toEntity(readerDTO);
+        return readerMapper.toDTO(readerRepository.updateReader(reader));
     }
 
     @Override

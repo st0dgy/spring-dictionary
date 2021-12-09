@@ -1,14 +1,18 @@
 package lpnu.service.impl;
 
 import lpnu.dto.ExplanationDTO;
+import lpnu.entity.Explanation;
+import lpnu.entity.Word;
 import lpnu.exception.ServiceException;
 import lpnu.mapper.ExplanationToExplanationDTOMapper;
 import lpnu.repository.ExplanationRepository;
 import lpnu.service.ExplanationService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ExplanationServiceImpl implements ExplanationService {
     private final ExplanationToExplanationDTOMapper explanationMapper;
     private final ExplanationRepository explanationRepository;
@@ -42,8 +46,8 @@ public class ExplanationServiceImpl implements ExplanationService {
             throw new ServiceException(400, "id is null");
         }
 
-        return explanationMapper.toDTO(explanationRepository.
-                updateExplanation(explanationMapper.toEntity(explanationDTO)));
+        final Explanation explanation = explanationMapper.toEntity(explanationDTO);
+        return explanationMapper.toDTO(explanationRepository.updateExplanation(explanation));
     }
 
     @Override
@@ -56,7 +60,9 @@ public class ExplanationServiceImpl implements ExplanationService {
             throw new ServiceException(400, "explanation is already saved");
         }
 
-        explanationRepository.saveExplanation(explanationMapper.toEntity(explanationDTO));
-        return explanationMapper.toDTO(explanationMapper.toEntity(explanationDTO));
+        final Explanation explanation = explanationMapper.toEntity(explanationDTO);
+
+        explanationRepository.saveExplanation(explanation);
+        return explanationMapper.toDTO(explanation);
     }
 }

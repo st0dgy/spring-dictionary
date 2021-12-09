@@ -10,10 +10,10 @@ import java.util.List;
 
 @RequestMapping("/api/v1")
 @RestController
-public class DictionaryController {
+public class DictionaryBookController {
     private final DictionaryBookService dictionaryService;
 
-    public DictionaryController(final DictionaryBookService dictionaryService) {
+    public DictionaryBookController(final DictionaryBookService dictionaryService) {
         this.dictionaryService = dictionaryService;
     }
 
