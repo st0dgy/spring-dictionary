@@ -1,15 +1,8 @@
 package lpnu.mapper;
 
-import lpnu.dto.ExplanationDTO;
 import lpnu.dto.ReaderDTO;
-import lpnu.dto.WordDTO;
-import lpnu.entity.Explanation;
 import lpnu.entity.Reader;
-import lpnu.entity.Word;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class ReaderToReaderDTOMapper {
