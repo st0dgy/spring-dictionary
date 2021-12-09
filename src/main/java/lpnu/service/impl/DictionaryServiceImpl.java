@@ -1,7 +1,6 @@
 package lpnu.service.impl;
 
 import lpnu.dto.DictionaryDTO;
-import lpnu.entity.Dictionary;
 import lpnu.exception.ServiceException;
 import lpnu.mapper.DictionaryToDictionaryDTOMapper;
 import lpnu.repository.DictionaryRepository;

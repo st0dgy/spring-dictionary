@@ -13,10 +13,10 @@ public class DictionaryToDictionaryDTOMapper {
                 dictionaryDTO.getExplanation());
     }
 
-    public DictionaryDTO toDTO(final Dictionary word) {
+    public DictionaryDTO toDTO(final Dictionary dictionary) {
         return new DictionaryDTO(
-                word.getId(),
-                word.getWord(),
-                word.getExplanation());
+                dictionary.getId(),
+                dictionary.getWord(),
+                dictionary.getExplanation());
     }
 }

@@ -7,6 +7,10 @@ public class Dictionary {
     private Word word;
     private Explanation explanation;
 
+    public Dictionary(){
+
+    }
+
     public Dictionary(final Long id, final Word word, final Explanation explanation) {
         this.id = id;
         this.word = word;

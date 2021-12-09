@@ -10,6 +10,10 @@ public class DictionaryDTO {
     private Word word;
     private Explanation explanation;
 
+    private DictionaryDTO(){
+
+    }
+
     public DictionaryDTO(final Long id, final Word word, final Explanation explanation) {
         this.id = id;
         this.word = word;
