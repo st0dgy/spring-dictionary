@@ -51,7 +51,7 @@ public class WordServiceImpl implements WordService {
         }
 
         if (wordRepository.getAllWords().stream().anyMatch(wordMapper.toEntity(explanationDTO)::equals)) {
-            throw new ServiceException(400, "explanation is already saved");
+            throw new ServiceException(400, "word is already saved");
         }
 
         wordRepository.saveWord(wordMapper.toEntity(explanationDTO));

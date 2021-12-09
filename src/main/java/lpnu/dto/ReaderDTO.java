@@ -1,14 +1,11 @@
 package lpnu.dto;
 
-import lpnu.entity.Explanation;
-import lpnu.entity.Word;
+import lpnu.entity.Dictionary;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class ReaderDTO {
@@ -25,14 +22,13 @@ public class ReaderDTO {
     @Max(100)
     private Integer age;
 
-    @NotNull
-    private Map<Word, Explanation> dictionary = new HashMap<>();
+    private Dictionary dictionary;
 
     public ReaderDTO(){
 
     }
 
-    public ReaderDTO(final Long id, final String name, final String surname, final Integer age, final Map<Word, Explanation> dictionary) {
+    public ReaderDTO(final Long id, final String name, final String surname, final Integer age, final Dictionary dictionary) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -72,11 +68,11 @@ public class ReaderDTO {
         this.age = age;
     }
 
-    public Map<Word, Explanation> getDictionary() {
+    public Dictionary getDictionary() {
         return dictionary;
     }
 
-    public void setDictionary(Map<Word, Explanation> dictionary) {
+    public void setDictionary(Dictionary dictionary) {
         this.dictionary = dictionary;
     }
 

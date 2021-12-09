@@ -1,14 +1,11 @@
 package lpnu.repository;
 
-import lpnu.entity.Explanation;
 import lpnu.entity.Reader;
-import lpnu.entity.Word;
 import lpnu.exception.ServiceException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ReaderRepository {

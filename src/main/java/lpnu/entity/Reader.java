@@ -4,8 +4,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Reader {
@@ -22,14 +20,13 @@ public class Reader {
     @Max(100)
     private Integer age;
 
-    @NotNull
-    private Map<Word, Explanation> dictionary = new HashMap<>();
+    private Dictionary dictionary;
 
     public Reader(){
 
     }
 
-    public Reader(final Long id, final String name, final String surname, final Integer age, final Map<Word, Explanation> dictionary) {
+    public Reader(final Long id, final String name, final String surname, final Integer age, final Dictionary dictionary) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -69,11 +66,11 @@ public class Reader {
         this.age = age;
     }
 
-    public Map<Word, Explanation> getDictionary() {
+    public Dictionary getDictionary() {
         return dictionary;
     }
 
-    public void setDictionary(Map<Word, Explanation> dictionary) {
+    public void setDictionary(Dictionary dictionary) {
         this.dictionary = dictionary;
     }
 

@@ -1,15 +1,12 @@
 package lpnu.controller;
 
-import lpnu.dto.ExplanationDTO;
 import lpnu.dto.ReaderDTO;
-import lpnu.dto.WordDTO;
 import lpnu.service.ReaderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("/api/v1")
 @RestController
@@ -38,11 +35,6 @@ public class ReaderController {
     @PutMapping("/readers")
     public ResponseEntity<ReaderDTO> updateReader(@Validated @RequestBody final ReaderDTO readerDTO) {
         return ResponseEntity.ok().body(readerService.updateReader(readerDTO));
-    }
-
-    @PutMapping("/readers-dictionary")
-    public ResponseEntity<ReaderDTO> updateReader(@Validated @RequestBody final Map<WordDTO, ExplanationDTO> mapDTO, @PathVariable final Long id) {
-        return ResponseEntity.ok().body(readerService.addNewWordsToDictionary(mapDTO, id));
     }
 
     @DeleteMapping("/readers/{id}")

@@ -13,9 +13,7 @@ import lpnu.mapper.WordToWordDTOMapper;
 import lpnu.repository.ReaderRepository;
 import lpnu.service.ReaderService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ReaderServiceImpl implements ReaderService {
@@ -65,25 +63,10 @@ public class ReaderServiceImpl implements ReaderService {
         }
 
         if (readerRepository.getAllReaders().stream().anyMatch(readerMapper.toEntity(readerDTO)::equals)) {
-            throw new ServiceException(400, "hall is already saved");
+            throw new ServiceException(400, "reader is already saved");
         }
 
         final Reader reader = readerMapper.toEntity(readerDTO);
-
-        readerRepository.saveReader(reader);
-        return readerMapper.toDTO(reader);
-    }
-
-    @Override
-    public ReaderDTO addNewWordsToDictionary(final Map<WordDTO, ExplanationDTO> mapDTO, final Long id) {
-        final Reader reader = readerRepository.getReaderById(id);
-
-        for(Map.Entry<WordDTO, ExplanationDTO> entry : mapDTO.entrySet()){
-            WordDTO key = entry.getKey();
-            ExplanationDTO value = entry.getValue();
-
-            reader.getDictionary().put(wordMapper.toEntity(key), explanationMapper.toEntity(value));
-        }
 
         readerRepository.saveReader(reader);
         return readerMapper.toDTO(reader);
