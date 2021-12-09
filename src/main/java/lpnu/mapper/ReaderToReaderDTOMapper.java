@@ -12,7 +12,7 @@ public class ReaderToReaderDTOMapper {
                 readerDTO.getName(),
                 readerDTO.getSurname(),
                 readerDTO.getAge(),
-                readerDTO.getDictionary());
+                readerDTO.getDictionaryBook());
     }
 
     public ReaderDTO toDTO(final Reader reader) {
@@ -21,6 +21,6 @@ public class ReaderToReaderDTOMapper {
                 reader.getName(),
                 reader.getSurname(),
                 reader.getAge(),
-                reader.getDictionary());
+                reader.getDictionaryBook());
     }
 }

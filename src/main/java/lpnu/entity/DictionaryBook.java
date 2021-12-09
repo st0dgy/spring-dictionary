@@ -1,20 +1,17 @@
-package lpnu.dto;
-
-import lpnu.entity.Explanation;
-import lpnu.entity.Word;
+package lpnu.entity;
 
 import java.util.Objects;
 
-public class DictionaryDTO {
+public class DictionaryBook {
     private Long id;
     private Word word;
     private Explanation explanation;
 
-    private DictionaryDTO(){
+    public DictionaryBook(){
 
     }
 
-    public DictionaryDTO(final Long id, final Word word, final Explanation explanation) {
+    public DictionaryBook(final Long id, final Word word, final Explanation explanation) {
         this.id = id;
         this.word = word;
         this.explanation = explanation;
@@ -48,7 +45,7 @@ public class DictionaryDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DictionaryDTO that = (DictionaryDTO) o;
+        DictionaryBook that = (DictionaryBook) o;
         return Objects.equals(word, that.word) && Objects.equals(explanation, that.explanation);
     }
 

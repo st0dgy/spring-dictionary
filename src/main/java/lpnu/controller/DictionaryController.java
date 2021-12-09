@@ -1,7 +1,7 @@
 package lpnu.controller;
 
-import lpnu.dto.DictionaryDTO;
-import lpnu.service.DictionaryService;
+import lpnu.dto.DictionaryBookDTO;
+import lpnu.service.DictionaryBookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -11,35 +11,35 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @RestController
 public class DictionaryController {
-    private final DictionaryService dictionaryService;
+    private final DictionaryBookService dictionaryService;
 
-    public DictionaryController(final DictionaryService dictionaryService) {
+    public DictionaryController(final DictionaryBookService dictionaryService) {
         this.dictionaryService = dictionaryService;
     }
 
-    @GetMapping("/dictionaries")
-    public ResponseEntity<List<DictionaryDTO>> getAllDictionaries() {
-        return ResponseEntity.ok().body(dictionaryService.getAllDictionaries());
+    @GetMapping("/dictionary-books")
+    public ResponseEntity<List<DictionaryBookDTO>> getAllDictionaryBooks() {
+        return ResponseEntity.ok().body(dictionaryService.getAllDictionaryBooks());
     }
 
-    @GetMapping("/dictionaries/{id}")
-    public ResponseEntity<DictionaryDTO> getDictionaryById(@PathVariable final Long id) {
-        return ResponseEntity.ok().body(dictionaryService.getDictionaryById(id));
+    @GetMapping("/dictionary-books/{id}")
+    public ResponseEntity<DictionaryBookDTO> getDictionaryBookById(@PathVariable final Long id) {
+        return ResponseEntity.ok().body(dictionaryService.getDictionaryBookById(id));
     }
 
-    @PostMapping("/dictionaries")
-    public ResponseEntity<DictionaryDTO> saveDictionary(@Validated @RequestBody final DictionaryDTO dictionaryDTO) {
-        return ResponseEntity.ok().body(dictionaryService.saveDictionary(dictionaryDTO));
+    @PostMapping("/dictionary-books")
+    public ResponseEntity<DictionaryBookDTO> saveDictionaryBook(@Validated @RequestBody final DictionaryBookDTO dictionaryBookDTO) {
+        return ResponseEntity.ok().body(dictionaryService.saveDictionaryBook(dictionaryBookDTO));
     }
 
-    @PutMapping("/dictionaries")
-    public ResponseEntity<DictionaryDTO> updateDictionary(@Validated @RequestBody final DictionaryDTO dictionaryDTO) {
-        return ResponseEntity.ok().body(dictionaryService.updateDictionary(dictionaryDTO));
+    @PutMapping("/dictionary-books")
+    public ResponseEntity<DictionaryBookDTO> updateDictionaryBook(@Validated @RequestBody final DictionaryBookDTO dictionaryBookDTO) {
+        return ResponseEntity.ok().body(dictionaryService.updateDictionaryBook(dictionaryBookDTO));
     }
 
-    @DeleteMapping("/dictionaries/{id}")
-    public ResponseEntity deleteDictionaryById(@PathVariable final Long id) {
-        dictionaryService.deleteDictionaryById(id);
+    @DeleteMapping("/dictionary-books/{id}")
+    public ResponseEntity deleteDictionaryBookById(@PathVariable final Long id) {
+        dictionaryService.deleteDictionaryBookById(id);
         return ResponseEntity.ok().build();
     }
 }

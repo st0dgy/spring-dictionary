@@ -1,20 +1,20 @@
 package lpnu.mapper;
 
-import lpnu.dto.DictionaryDTO;
-import lpnu.entity.Dictionary;
+import lpnu.dto.DictionaryBookDTO;
+import lpnu.entity.DictionaryBook;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DictionaryToDictionaryDTOMapper {
-    public Dictionary toEntity(final DictionaryDTO dictionaryDTO) {
-        return new Dictionary(
+public class DictionaryBookToDictionaryBookDTOMapper {
+    public DictionaryBook toEntity(final DictionaryBookDTO dictionaryDTO) {
+        return new DictionaryBook(
                 dictionaryDTO.getId(),
                 dictionaryDTO.getWord(),
                 dictionaryDTO.getExplanation());
     }
 
-    public DictionaryDTO toDTO(final Dictionary dictionary) {
-        return new DictionaryDTO(
+    public DictionaryBookDTO toDTO(final DictionaryBook dictionary) {
+        return new DictionaryBookDTO(
                 dictionary.getId(),
                 dictionary.getWord(),
                 dictionary.getExplanation());

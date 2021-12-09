@@ -31,7 +31,7 @@ public class ReaderRepository {
         savedReader.setName(reader.getName());
         savedReader.setSurname(reader.getSurname());
         savedReader.setAge(reader.getAge());
-        savedReader.setDictionary(reader.getDictionary());
+        savedReader.setDictionaryBook(reader.getDictionaryBook());
 
         return savedReader;
     }

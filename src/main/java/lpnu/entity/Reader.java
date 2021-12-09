@@ -20,18 +20,18 @@ public class Reader {
     @Max(100)
     private Integer age;
 
-    private Dictionary dictionary;
+    private DictionaryBook dictionaryBook;
 
     public Reader(){
 
     }
 
-    public Reader(final Long id, final String name, final String surname, final Integer age, final Dictionary dictionary) {
+    public Reader(final Long id, final String name, final String surname, final Integer age, final DictionaryBook dictionaryBook) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.dictionary = dictionary;
+        this.dictionaryBook = dictionaryBook;
     }
 
     public Long getId() {
@@ -66,12 +66,12 @@ public class Reader {
         this.age = age;
     }
 
-    public Dictionary getDictionary() {
-        return dictionary;
+    public DictionaryBook getDictionaryBook() {
+        return dictionaryBook;
     }
 
-    public void setDictionary(Dictionary dictionary) {
-        this.dictionary = dictionary;
+    public void setDictionaryBook(final DictionaryBook dictionaryBook) {
+        this.dictionaryBook = dictionaryBook;
     }
 
     @Override
@@ -79,11 +79,11 @@ public class Reader {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reader reader = (Reader) o;
-        return Objects.equals(name, reader.name) && Objects.equals(surname, reader.surname) && Objects.equals(age, reader.age) && Objects.equals(dictionary, reader.dictionary);
+        return Objects.equals(name, reader.name) && Objects.equals(surname, reader.surname) && Objects.equals(age, reader.age) && Objects.equals(dictionaryBook, reader.dictionaryBook);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, age, dictionary);
+        return Objects.hash(name, surname, age, dictionaryBook);
     }
 }
